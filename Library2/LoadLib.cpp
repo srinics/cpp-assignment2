@@ -78,6 +78,7 @@ void LoadSharedObject(const char* libPath, const char *funcName){
     
     		// reset errors
     		dlerror();
+		std::cout  << "Function in symbol:" << funcName << std::endl;
 		LibraryFunc LibFunc = (LibraryFunc) dlsym(handle, funcName);
     		const char *dlsym_error = dlerror();
     		if (dlsym_error) {

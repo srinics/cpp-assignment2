@@ -11,5 +11,5 @@ if [ "$op" = "clean" ]; then
 fi
 
 g++ --shared $lib_dir1/File1.cpp -o $lib_dir1/liblibrary1.so --std=c++11 -fPIC
-g++ --shared $lib_dir2/LoadLib.cpp -o $lib_dir2/liblibrary2.so --std=c++11  -fPIC
+g++ --shared $lib_dir2/LoadLib.cpp -o $lib_dir2/liblibrary2.so --std=c++11  -ldl -fPIC
 g++ Main.cpp -o $binary_name -L$lib_dir2 -I$lib_dir2 $lib_dir2/liblibrary2.so --std=c++11
