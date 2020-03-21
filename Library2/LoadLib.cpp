@@ -57,6 +57,7 @@ void LoadDLL(const char *libPath, const char *fName){
 
 }
 #else
+#include <dlfcn.h>
 /*
 Author: M1043833
 Function Name: LoadSharedObject(const char*, const char *)
@@ -66,6 +67,32 @@ It will take two arguments (const char*) 1st argument contains libpath and secon
 This function will use in Linux enviroment.
 */
 void LoadSharedObject(const char* libPath, const char *funcName){
+	try{
+
+		void* handle = dlopen(libPath, RTLD_LAZY);
+    
+    		if (!handle) {
+        		std::cout  << "Cannot open library: " << dlerror() << std::endl;
+			throw std::runtime_error("Shared object open error");
+    		}
+    
+    		// reset errors
+    		dlerror();
+		LibraryFunc LibFunc = (LibraryFunc) dlsym(handle, funcName);
+    		const char *dlsym_error = dlerror();
+    		if (dlsym_error) {
+        		std::cout << "Cannot load symbol 'hello': " << dlsym_error <<
+            '\n';
+        		dlclose(handle);
+			throw std::runtime_error("Shared object open error");
+    		}
+    
+    		LibFunc();
+        	dlclose(handle);
+	}
+	catch ( std::exception ){
+		throw;
+	}
 }
 #endif
 
