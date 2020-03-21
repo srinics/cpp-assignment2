@@ -7,7 +7,7 @@ Author: M1043833 ( Srinivasan Rajendran )
 #ifndef __FILE1_H__
 #define __FILE1_H__
 
-void Func1();
-void Func2();
+extern "C" void Func1();
+extern "C" void Func2();
 
 #endif

@@ -14,7 +14,7 @@ Function Name: Func1
 Description:
 Simple function just print the function function and it has no arguments and no return type
 */
-void Func1(){
+extern "C" void Func1(){
 	std::cout << "Calling Func1" << std::endl;
 }
 
@@ -24,6 +24,6 @@ Function Name: Func2
 Description:
 Simple function just print the function function and it has no arguments and no return type
 */
-void Func2(){
+extern "C" void Func2(){
 	std::cout << "Calling Func2" << std::endl;
 }

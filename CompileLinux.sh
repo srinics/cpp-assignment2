@@ -10,6 +10,6 @@ if [ "$op" = "clean" ]; then
 	exit 0;
 fi
 
-g++ --shared $lib_dir1/File1.cpp -o $lib_dir1/liblibrary1.so --std=c++11 -fPIC
-g++ --shared $lib_dir2/LoadLib.cpp -o $lib_dir2/liblibrary2.so --std=c++11  -ldl -fPIC
-g++ Main.cpp -o $binary_name -L$lib_dir2 -I$lib_dir2 $lib_dir2/liblibrary2.so --std=c++11
+g++ --shared $lib_dir1/File1.cpp -o $lib_dir1/liblibrary1.so --std=c++11 -fPIC -Wl,--no-as-needed -ldl
+g++ --shared $lib_dir2/LoadLib.cpp -o $lib_dir2/liblibrary2.so --std=c++11  -ldl -fPIC -Wl,--no-as-needed -ldl
+g++ Main.cpp -o $binary_name -L$lib_dir1 -L$lib_dir2 -I$lib_dir1 -I$lib_dir2 $lib_dir2/liblibrary2.so --std=c++11 -Wl,--no-as-needed -ldl
