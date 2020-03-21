@@ -7,11 +7,17 @@
 #ifndef __LOADLIB_H__
 #define __LOADLIB_H__
 
+#ifdef WIN32
 
 #ifdef LIBRARY_EXPORTS
 #define LIBRARY_API __declspec(dllexport)
 #else
 #define LIBRARY_API __declspec(dllimport)
+#endif
+
+#else
+#define LIBRARY_API 
+
 #endif
 
 
