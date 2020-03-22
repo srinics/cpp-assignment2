@@ -29,10 +29,16 @@ This function will use in Windows enviroment.
 */
 void LoadDLL(const char *libPath, const char *fName){
 	LibraryFunc LibFunc;
-
 	try {
-		LPCWSTR p = LPCWSTR(libPath);
-		HINSTANCE hInstLibrary = LoadLibrary(p);
+		//std::cout << "Library path in LoadDLL: " << libPath << std::endl;
+		size_t size = strlen(libPath) + 1;
+		wchar_t* libPathWchar = new wchar_t[size];
+
+		size_t outSize;
+		mbstowcs_s(&outSize, libPathWchar, size, libPath, size - 1);
+
+
+		HINSTANCE hInstLibrary = LoadLibrary(libPathWchar);
 
 		if (hInstLibrary)
 		{
@@ -43,18 +49,23 @@ void LoadDLL(const char *libPath, const char *fName){
 				std::cout << "Calling Library Function: " << std::endl;
 				LibFunc();
 			}
+			else{
+				std::cout << "In DLL "<< libPath << " funciton "<< fName << " not available" << std::endl;
+				throw std::runtime_error("DLL funciton is not available");
+			}
 			FreeLibrary(hInstLibrary);
+			free(libPathWchar);
 		}
 		else
 		{
 			std::cout << "DLL Failed To Load!" << std::endl;
+			free(libPathWchar);
 			throw std::runtime_error("DLL Failed To Load");
 		}
 	}
 	catch (std::runtime_error){
 		throw;
 	}
-
 }
 #else
 #include <dlfcn.h>

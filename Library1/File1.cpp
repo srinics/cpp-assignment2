@@ -3,9 +3,12 @@
 * Description: This file (File1.cpp) contains simple functions to test dll load 
 *
 * */
+
+#define LIBRARY1_EXPORTS
 #include <iostream>
 #include "File1.h"
 using namespace std;
+
 
 
 /*
@@ -14,7 +17,8 @@ Function Name: Func1
 Description:
 Simple function just print the function function and it has no arguments and no return type
 */
-extern "C" void Func1(){
+extern "C" void LIBRARY_API
+Func1(){
 	std::cout << "Calling Func1" << std::endl;
 }
 
@@ -24,6 +28,7 @@ Function Name: Func2
 Description:
 Simple function just print the function function and it has no arguments and no return type
 */
-extern "C" void Func2(){
+extern "C" void LIBRARY_API
+Func2(){
 	std::cout << "Calling Func2" << std::endl;
 }
