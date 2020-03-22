@@ -22,7 +22,7 @@
 
 
 
-LIBRARY_API bool LoadLibrary(const char *libPath, const char *funcName);
+LIBRARY_API bool LoadLibraryFunc(const char *libPath, const char *funcName);
 #ifdef WIN32
 LIBRARY_API void LoadDLL(const char*, const char*);
 #else

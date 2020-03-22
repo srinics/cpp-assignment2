@@ -17,6 +17,6 @@ int main(int argv, char **argc){
 		std::cout << "Invalid argument provided" << std::endl;
 		return -1;
 	}
-	LoadLibrary(argc[1], argc[2]);
+	LoadLibraryFunc(argc[1], argc[2]);
 	return 0;
 }

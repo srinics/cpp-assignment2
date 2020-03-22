@@ -111,13 +111,13 @@ void LoadSharedObject(const char* libPath, const char *funcName){
 
 /*
 Author: M1043833
-Function Name: LoadLibrary(const char *, const char *)
+Function Name: LoadLibraryFunc(const char *, const char *)
 Description:
 Simple function to load the library and read the exported symbols of the library and invoke the func.
 It will take two arguments (const char*) 1st argument contains libpath and second argument is function name.
 It is wrapper function based on the enviroment it will invoke LoadDLL or LoadSharedObject.
 */
-bool LoadLibrary(const char *libPath, const char *funcName){
+bool LoadLibraryFunc(const char *libPath, const char *funcName){
 
 	try{
 
